@@ -119,10 +119,11 @@ public class TicTacToe10x10 implements ActionListener {
         var f = "X";
         var g = "O";
         // Анализ побед крестика
-        // Анализ победы, если x идет по горизонтали
+
 
         for(int i = 0; i < 100; i += 10){
             for(int j = i; j < i+6; j++){
+                // Анализ победы, если x идет по горизонтали
                 if((buttons[j].getText().matches(f)) &&
                         (buttons[j+1].getText().matches(f)) &&
                         (buttons[j+2].getText().matches(f)) &&
@@ -130,6 +131,7 @@ public class TicTacToe10x10 implements ActionListener {
                         (buttons[j+4].getText().matches(f))) {
                     xWins(j, j + 1, j + 2, j + 3, j + 4);
                 }
+                // Анализ победы, если o идет по горизонтали
                 else if((buttons[j].getText().matches(g)) &&
                         (buttons[j+1].getText().matches(g)) &&
                         (buttons[j+2].getText().matches(g)) &&
