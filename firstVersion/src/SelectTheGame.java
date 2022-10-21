@@ -1,15 +1,17 @@
 // Подключаем необходимые библиотеки для работы с графическим интерфейсом
 import java.awt.*;
 import java.awt.event.*;
+import java.util.Random;
 import javax.swing.*;
 
 public class SelectTheGame implements ActionListener {
 
+    Random random = new Random();
     JFrame frame = new JFrame();
     JPanel title_panel = new JPanel();
     JPanel button_panel = new JPanel();
     JLabel textfield = new JLabel();
-    JButton[] buttons = new JButton[3];
+    JButton[] buttons = new JButton[4];
 
     // Интерфейс первого окна
     SelectTheGame() {
@@ -33,7 +35,7 @@ public class SelectTheGame implements ActionListener {
         title_panel.setLayout(new BorderLayout());
         title_panel.setBounds(0, 0, 800, 300);
 
-        button_panel.setLayout(new GridLayout(2, 1));
+        button_panel.setLayout(new GridLayout(4, 1));
         button_panel.setBackground(new Color(150, 150, 150));
 
         title_panel.add(textfield);
@@ -67,6 +69,14 @@ public class SelectTheGame implements ActionListener {
         buttons[2].setBackground(new Color(44, 41, 41));
         buttons[2].setForeground(new Color(225, 225, 225));
 
+        buttons[3] = new JButton("Random level");
+        button_panel.add(buttons[3]);
+        buttons[3].setFont(new Font("", Font.BOLD, 50));
+        buttons[3].setFocusable(false);
+        buttons[3].addActionListener(this);
+        buttons[3].setBackground(new Color(44, 41, 41));
+        buttons[3].setForeground(new Color(225, 225, 225));
+
     }
 
     // Метод, отвечающий за выбор игры: 3х3 или 5х5 или 10x10
@@ -76,13 +86,28 @@ public class SelectTheGame implements ActionListener {
         if (e.getSource() == buttons[0]) { // выбор игры 3х3
             frame.dispose();
             TicTacToe3x3 Window3x3 = new TicTacToe3x3();
-        } else if (e.getSource() == buttons[1]) { // выбор игры 5х5
+        }
+        else if (e.getSource() == buttons[1]) { // выбор игры 5х5
             frame.dispose();
             TicTacToe5x5 Window5x5 = new TicTacToe5x5();
-        } else if (e.getSource() == buttons[2]) { // выбор игры 10х10
+        }
+        else if (e.getSource() == buttons[2]) { // выбор игры 10х10
             frame.dispose();
             TicTacToe10x10 Window10x10 = new TicTacToe10x10();
-
+        }
+        else if (e.getSource() == buttons[3]) {
+            if (random.nextInt(4) == 0) {
+                frame.dispose();
+                TicTacToe3x3 Window3x3 = new TicTacToe3x3();
+            }
+            else if  (random.nextInt(4) == 1) {
+                frame.dispose();
+                TicTacToe5x5 Window5x5 = new TicTacToe5x5();
+            }
+            else if (random.nextInt(4) == 2) {
+                frame.dispose();
+                TicTacToe10x10 Window10x10 = new TicTacToe10x10();
+            }
         }
     }
 }

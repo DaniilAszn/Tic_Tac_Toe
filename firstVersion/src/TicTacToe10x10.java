@@ -44,7 +44,7 @@ public class TicTacToe10x10 implements ActionListener {
         for(int i=0;i<100;i++) {
             buttons[i] = new JButton();
             button_panel.add(buttons[i]);
-            buttons[i].setFont(new Font("",Font.BOLD,75));
+            buttons[i].setFont(new Font("",Font.BOLD,50));
             buttons[i].setFocusable(false);
             buttons[i].addActionListener(this);
             buttons[i].setBackground(new Color(255, 255, 255));
@@ -74,11 +74,8 @@ public class TicTacToe10x10 implements ActionListener {
                         check(); // вызов метода для проверки комбинации победы на текущем этапе
                     }
                     else { // блок команд, который вызывается в случае, если игрок захотел нажать на заполненное поле
-                        for(int j=0;j<100;j++) {
-                            buttons[j].setEnabled(false);
-                        }
-                        textfield.setText("One more game!");
-                        break;
+                        frame.dispose();
+                        TicTacToe10x10 Window10x10 = new TicTacToe10x10();
                     }
                 }
                 else { // если ходит нолик
@@ -90,11 +87,8 @@ public class TicTacToe10x10 implements ActionListener {
                         check(); // вызов метода для проверки комбинации победы на текущем этапе
                     }
                     else { // блок команд, который вызывается в случае, если игрок захотел нажать на заполненное поле
-                        for(int j=0;j<100;j++) {
-                            buttons[j].setEnabled(false);
-                        }
-                        textfield.setText("One more game!");
-                        break;
+                        frame.dispose();
+                        TicTacToe10x10 Window10x10 = new TicTacToe10x10();
                     }
                 }
             }
