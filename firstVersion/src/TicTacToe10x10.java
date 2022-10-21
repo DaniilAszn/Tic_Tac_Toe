@@ -65,20 +65,20 @@ public class TicTacToe10x10 implements ActionListener {
 
         for(int i=0;i<100;i++) {
             if(e.getSource()==buttons[i]) {
-                if(player1_turn) { // если ходит крестик
+                if(player1_turn) { // Если ходит крестик
                     if(buttons[i].getText()=="") {
                         buttons[i].setForeground(new Color(0, 0, 255));
                         buttons[i].setText("X");
                         player1_turn=false;
                         textfield.setText("O");
-                        check(); // вызов метода для проверки комбинации победы на текущем этапе
+                        check(); // Вызов метода для проверки комбинации победы на текущем этапе
                     }
-                    else { // блок команд, который вызывается в случае, если игрок захотел нажать на заполненное поле
+                    else { // Блок команд, который вызывается в случае, если игрок захотел нажать на заполненное поле
                         frame.dispose();
                         TicTacToe10x10 Window10x10 = new TicTacToe10x10();
                     }
                 }
-                else { // если ходит нолик
+                else { // Если ходит нолик
                     if(buttons[i].getText()=="") {
                         buttons[i].setForeground(new Color(255, 0, 0));
                         buttons[i].setText("O");
@@ -86,7 +86,7 @@ public class TicTacToe10x10 implements ActionListener {
                         textfield.setText("X");
                         check(); // вызов метода для проверки комбинации победы на текущем этапе
                     }
-                    else { // блок команд, который вызывается в случае, если игрок захотел нажать на заполненное поле
+                    else { // Блок команд, который вызывается в случае, если игрок захотел нажать на заполненное поле
                         frame.dispose();
                         TicTacToe10x10 Window10x10 = new TicTacToe10x10();
                     }

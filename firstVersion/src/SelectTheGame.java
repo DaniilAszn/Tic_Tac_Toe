@@ -104,6 +104,7 @@ public class SelectTheGame implements ActionListener {
                 frame.dispose();
                 TicTacToe5x5 Window5x5 = new TicTacToe5x5();
             }
+            // Выбор рандомной игры
             else if (random.nextInt(4) == 2) {
                 frame.dispose();
                 TicTacToe10x10 Window10x10 = new TicTacToe10x10();
