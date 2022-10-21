@@ -70,15 +70,12 @@ public class TicTacToe5x5 implements ActionListener {
                         buttons[i].setForeground(new Color(0, 0, 255));
                         buttons[i].setText("X");
                         player1_turn=false;
-                        textfield.setText("O:");
+                        textfield.setText("O");
                         check(); // вызов метода для проверки комбинации победы на текущем этапе
                     }
                     else { // блок команд, который вызывается в случае, если игрок захотел нажать на заполненное поле
-                        for(int j=0;j<25;j++) {
-                            buttons[j].setEnabled(false);
-                        }
-                        textfield.setText("One more game!");
-                        break;
+                        frame.dispose();
+                        TicTacToe5x5 Window5x5 = new TicTacToe5x5();
                     }
                 }
                 else { // если ходит нолик
@@ -86,15 +83,12 @@ public class TicTacToe5x5 implements ActionListener {
                         buttons[i].setForeground(new Color(255, 0, 0));
                         buttons[i].setText("O");
                         player1_turn=true;
-                        textfield.setText("X:");
+                        textfield.setText("X");
                         check(); // вызов метода для проверки комбинации победы на текущем этапе
                     }
                     else { // блок команд, который вызывается в случае, если игрок захотел нажать на заполненное поле
-                        for(int j=0;j<25;j++) {
-                            buttons[j].setEnabled(false);
-                        }
-                        textfield.setText("One more game!");
-                        break;
+                        frame.dispose();
+                        TicTacToe5x5 Window5x5 = new TicTacToe5x5();
                     }
                 }
             }
@@ -107,11 +101,11 @@ public class TicTacToe5x5 implements ActionListener {
 
         if(random.nextInt(2)==0) { // первый ход выбирается случайно
             player1_turn=true;
-            textfield.setText("X:");
+            textfield.setText("X");
         }
         else {
             player1_turn=false;
-            textfield.setText("O:");
+            textfield.setText("O");
         }
 
     }
@@ -119,178 +113,81 @@ public class TicTacToe5x5 implements ActionListener {
     // Все варианты победы (4 подряд заполненных поля одним символом)
     public void check() {
 
-        // Анализ побед крестика
-        if((buttons[0].getText()=="X") && (buttons[1].getText()=="X") && (buttons[2].getText()=="X") && (buttons[3].getText()=="X")) {
-            xWins(0,1,2,3);
-        }
-        if((buttons[5].getText()=="X") && (buttons[6].getText()=="X") && (buttons[7].getText()=="X") && (buttons[8].getText()=="X")) {
-            xWins(5,6,7,8);
-        }
-        if((buttons[10].getText()=="X") && (buttons[11].getText()=="X") && (buttons[12].getText()=="X") && (buttons[13].getText()=="X")) {
-            xWins(10,11,12,13);
-        }
-        if((buttons[15].getText()=="X") && (buttons[16].getText()=="X") && (buttons[17].getText()=="X") && (buttons[18].getText()=="X")) {
-            xWins(15,16,17,18);
-        }
-        if((buttons[20].getText()=="X") && (buttons[21].getText()=="X") && (buttons[22].getText()=="X") && (buttons[23].getText()=="X")) {
-            xWins(20,21,22,23);
-        }
-        if((buttons[1].getText()=="X") && (buttons[2].getText()=="X") && (buttons[3].getText()=="X") && (buttons[4].getText()=="X")) {
-            xWins(1,2,3,4);
-        }
-        if((buttons[6].getText()=="X") && (buttons[7].getText()=="X") && (buttons[8].getText()=="X") && (buttons[9].getText()=="X")) {
-            xWins(6,7,8,9);
-        }
-        if((buttons[11].getText()=="X") && (buttons[12].getText()=="X") && (buttons[13].getText()=="X") && (buttons[14].getText()=="X")) {
-            xWins(11,12,13,14);
-        }
-        if((buttons[16].getText()=="X") && (buttons[17].getText()=="X") && (buttons[18].getText()=="X") && (buttons[19].getText()=="X")) {
-            xWins(16,17,18,19);
-        }
-        if((buttons[21].getText()=="X") && (buttons[22].getText()=="X") && (buttons[23].getText()=="X") && (buttons[24].getText()=="X")) {
-            xWins(21,22,23,24);
-        }
-        if((buttons[0].getText()=="X") && (buttons[5].getText()=="X") && (buttons[10].getText()=="X") && (buttons[15].getText()=="X")) {
-            xWins(0,5,10,15);
-        }
-        if((buttons[1].getText()=="X") && (buttons[6].getText()=="X") && (buttons[11].getText()=="X") && (buttons[16].getText()=="X")) {
-            xWins(1,6,11,16);
-        }
-        if((buttons[2].getText()=="X") && (buttons[7].getText()=="X") && (buttons[12].getText()=="X") && (buttons[17].getText()=="X")) {
-            xWins(2,7,12,17);
-        }
-        if((buttons[3].getText()=="X") && (buttons[8].getText()=="X") && (buttons[13].getText()=="X") && (buttons[18].getText()=="X")) {
-            xWins(3,8,13,18);
-        }
-        if((buttons[4].getText()=="X") && (buttons[9].getText()=="X") && (buttons[14].getText()=="X") && (buttons[19].getText()=="X")) {
-            xWins(4,9,14,19);
-        }
-        if((buttons[5].getText()=="X") && (buttons[10].getText()=="X") && (buttons[15].getText()=="X") && (buttons[20].getText()=="X")) {
-            xWins(5,10,15,20);
-        }
-        if((buttons[6].getText()=="X") && (buttons[11].getText()=="X") && (buttons[16].getText()=="X") && (buttons[21].getText()=="X")) {
-            xWins(6,11,16,21);
-        }
-        if((buttons[7].getText()=="X") && (buttons[12].getText()=="X") && (buttons[17].getText()=="X") && (buttons[22].getText()=="X")) {
-            xWins(7,12,17,22);
-        }
-        if((buttons[8].getText()=="X") && (buttons[13].getText()=="X") && (buttons[18].getText()=="X") && (buttons[23].getText()=="X")) {
-            xWins(8,13,18,23);
-        }
-        if((buttons[9].getText()=="X") && (buttons[14].getText()=="X") && (buttons[19].getText()=="X") && (buttons[24].getText()=="X")) {
-            xWins(9,14,19,24);
-        }
-        if((buttons[0].getText()=="X") && (buttons[6].getText()=="X") && (buttons[12].getText()=="X") && (buttons[18].getText()=="X")) {
-            xWins(0,6,12,18);
-        }
-        if((buttons[1].getText()=="X") && (buttons[7].getText()=="X") && (buttons[13].getText()=="X") && (buttons[19].getText()=="X")) {
-            xWins(1,7,13,19);
-        }
-        if((buttons[5].getText()=="X") && (buttons[11].getText()=="X") && (buttons[17].getText()=="X") && (buttons[23].getText()=="X")) {
-            xWins(5,11,17,23);
-        }
-        if((buttons[6].getText()=="X") && (buttons[12].getText()=="X") && (buttons[18].getText()=="X") && (buttons[24].getText()=="X")) {
-            xWins(6,12,18,24);
-        }
-        if((buttons[3].getText()=="X") && (buttons[7].getText()=="X") && (buttons[11].getText()=="X") && (buttons[15].getText()=="X")) {
-            xWins(3,7,11,15);
-        }
-        if((buttons[4].getText()=="X") && (buttons[8].getText()=="X") && (buttons[12].getText()=="X") && (buttons[16].getText()=="X")) {
-            xWins(4,8,12,16);
-        }
-        if((buttons[8].getText()=="X") && (buttons[12].getText()=="X") && (buttons[16].getText()=="X") && (buttons[20].getText()=="X")) {
-            xWins(8,12,16,20);
-        }
-        if((buttons[9].getText()=="X") && (buttons[13].getText()=="X") && (buttons[17].getText()=="X") && (buttons[21].getText()=="X")) {
-            xWins(9,13,17,21);
-        }
+        var f = "X";
+        var g = "O";
 
-        // Анализ побед нолика
-        if((buttons[0].getText()=="O") && (buttons[1].getText()=="O") && (buttons[2].getText()=="O") && (buttons[3].getText()=="O")) {
-            oWins(0,1,2,3);
-        }
-        if((buttons[5].getText()=="O") && (buttons[6].getText()=="O") && (buttons[7].getText()=="O") && (buttons[8].getText()=="O")) {
-            oWins(5,6,7,8);
-        }
-        if((buttons[10].getText()=="O") && (buttons[11].getText()=="O") && (buttons[12].getText()=="O") && (buttons[13].getText()=="O")) {
-            oWins(10,11,12,13);
-        }
-        if((buttons[15].getText()=="O") && (buttons[16].getText()=="O") && (buttons[17].getText()=="O") && (buttons[18].getText()=="O")) {
-            oWins(15,16,17,18);
-        }
-        if((buttons[20].getText()=="O") && (buttons[21].getText()=="O") && (buttons[22].getText()=="O") && (buttons[23].getText()=="O")) {
-            oWins(20,21,22,23);
-        }
-        if((buttons[1].getText()=="O") && (buttons[2].getText()=="O") && (buttons[3].getText()=="O") && (buttons[4].getText()=="O")) {
-            oWins(1,2,3,4);
-        }
-        if((buttons[6].getText()=="O") && (buttons[7].getText()=="O") && (buttons[8].getText()=="O") && (buttons[9].getText()=="O")) {
-            oWins(6,7,8,9);
-        }
-        if((buttons[11].getText()=="O") && (buttons[12].getText()=="O") && (buttons[13].getText()=="O") && (buttons[14].getText()=="O")) {
-            oWins(11,12,13,14);
-        }
-        if((buttons[16].getText()=="O") && (buttons[17].getText()=="O") && (buttons[18].getText()=="O") && (buttons[19].getText()=="O")) {
-            oWins(16,17,18,19);
-        }
-        if((buttons[21].getText()=="O") && (buttons[22].getText()=="O") && (buttons[23].getText()=="O") && (buttons[24].getText()=="O")) {
-            oWins(21,22,23,24);
-        }
-        if((buttons[0].getText()=="O") && (buttons[5].getText()=="O") && (buttons[10].getText()=="O") && (buttons[15].getText()=="O")) {
-            oWins(0,5,10,15);
-        }
-        if((buttons[1].getText()=="O") && (buttons[6].getText()=="O") && (buttons[11].getText()=="O") && (buttons[16].getText()=="O")) {
-            oWins(1,6,11,16);
-        }
-        if((buttons[2].getText()=="O") && (buttons[7].getText()=="O") && (buttons[12].getText()=="O") && (buttons[17].getText()=="O")) {
-            oWins(2,7,12,17);
-        }
-        if((buttons[3].getText()=="O") && (buttons[8].getText()=="O") && (buttons[13].getText()=="O") && (buttons[18].getText()=="O")) {
-            oWins(3,8,13,18);
-        }
-        if((buttons[4].getText()=="O") && (buttons[9].getText()=="O") && (buttons[14].getText()=="O") && (buttons[19].getText()=="O")) {
-            oWins(4,9,14,19);
-        }
-        if((buttons[5].getText()=="O") && (buttons[10].getText()=="O") && (buttons[15].getText()=="O") && (buttons[20].getText()=="O")) {
-            oWins(5,10,15,20);
-        }
-        if((buttons[6].getText()=="O") && (buttons[11].getText()=="O") && (buttons[16].getText()=="O") && (buttons[21].getText()=="O")) {
-            oWins(6,11,16,21);
-        }
-        if((buttons[7].getText()=="O") && (buttons[12].getText()=="O") && (buttons[17].getText()=="O") && (buttons[22].getText()=="O")) {
-            oWins(7,12,17,22);
-        }
-        if((buttons[8].getText()=="O") && (buttons[13].getText()=="O") && (buttons[18].getText()=="O") && (buttons[23].getText()=="O")) {
-            oWins(8,13,18,23);
-        }
-        if((buttons[9].getText()=="O") && (buttons[14].getText()=="O") && (buttons[19].getText()=="O") && (buttons[24].getText()=="O")) {
-            oWins(9,14,19,24);
-        }
-        if((buttons[0].getText()=="O") && (buttons[6].getText()=="O") && (buttons[12].getText()=="O") && (buttons[18].getText()=="O")) {
-            oWins(0,6,12,18);
-        }
-        if((buttons[1].getText()=="O") && (buttons[7].getText()=="O") && (buttons[13].getText()=="O") && (buttons[19].getText()=="O")) {
-            oWins(1,7,13,19);
-        }
-        if((buttons[5].getText()=="O") && (buttons[11].getText()=="O") && (buttons[17].getText()=="O") && (buttons[23].getText()=="O")) {
-            oWins(5,11,17,23);
-        }
-        if((buttons[6].getText()=="O") && (buttons[12].getText()=="O") && (buttons[18].getText()=="O") && (buttons[24].getText()=="O")) {
-            oWins(6,12,18,24);
-        }
-        if((buttons[3].getText()=="O") && (buttons[7].getText()=="O") && (buttons[11].getText()=="O") && (buttons[15].getText()=="O")) {
-            oWins(3,7,11,15);
-        }
-        if((buttons[4].getText()=="O") && (buttons[8].getText()=="O") && (buttons[12].getText()=="O") && (buttons[16].getText()=="O")) {
-            oWins(4,8,12,16);
-        }
-        if((buttons[8].getText()=="O") && (buttons[12].getText()=="O") && (buttons[16].getText()=="O") && (buttons[20].getText()=="O")) {
-            oWins(8,12,16,20);
-        }
-        if((buttons[9].getText()=="O") && (buttons[13].getText()=="O") && (buttons[17].getText()=="O") && (buttons[21].getText()=="O")) {
-            oWins(9,13,17,21);
-        }
+        try {
+            for (int i = 0; i < 25; i += 5) {
+                for (int j = i; j < i + 2; j++) {
+                    // Победа по горизонтали (х)
+                    if ((buttons[j].getText().matches(f)) &&
+                            (buttons[j + 1].getText().matches(f)) &&
+                            (buttons[j + 2].getText().matches(f)) &&
+                            (buttons[j + 3].getText().matches(f))) {
+                        xWins(j, j + 1, j + 2, j + 3);
+                    }
+                    // Победа по горизонтали (о)
+                    else if ((buttons[j].getText().matches(g)) &&
+                            (buttons[j + 1].getText().matches(g)) &&
+                            (buttons[j + 2].getText().matches(g)) &&
+                            (buttons[j + 3].getText().matches(g))) {
 
+                        oWins(j, j + 1, j + 2, j + 3);
+                    }
+                }
+
+                for (int j = i + 3; j < i + 5; j++) {
+                    // Победа по диагонали (х) (справа налево)
+                    if ((buttons[j].getText().matches(f)) &&
+                            (buttons[j + 4].getText().matches(f)) &&
+                            (buttons[j + 8].getText().matches(f)) &&
+                            (buttons[j + 12].getText().matches(f))) {
+                        xWins(j, j + 4, j + 8, j + 12);
+                    }
+                    // Победа по диагонали (о) (справа налево)
+                    else if ((buttons[j].getText().matches(g)) &&
+                            (buttons[j + 4].getText().matches(g)) &&
+                            (buttons[j + 8].getText().matches(g)) &&
+                            (buttons[j + 12].getText().matches(g))) {
+                        oWins(j, j + 4, j + 8, j + 12);
+                    }
+                }
+            }
+        }
+        finally {
+            for (int i = 0; i < 10; i++) {
+                // Победа по вертикали (x)
+                if ((buttons[i].getText().matches(f)) &&
+                        (buttons[i + 5].getText().matches(f)) &&
+                        (buttons[i + 10].getText().matches(f)) &&
+                        (buttons[i + 15].getText().matches(f))) {
+                    xWins(i, i + 5, i + 10, i + 15);
+                }
+                // Победа по вертикали (o)
+                else if ((buttons[i].getText().matches(g)) &&
+                        (buttons[i + 5].getText().matches(g)) &&
+                        (buttons[i + 10].getText().matches(g)) &&
+                        (buttons[i + 15].getText().matches(g))) {
+                    oWins(i, i + 5, i + 10, i + 15);
+                }
+                for (int j = i; j < i + 5; j++) {
+                    // Анализ победы, если х идет по диагонали (слева направо)
+                    if ((buttons[j].getText().matches(f)) &&
+                            (buttons[j + 6].getText().matches(f)) &&
+                            (buttons[j + 12].getText().matches(f)) &&
+                            (buttons[j + 18].getText().matches(f))) {
+                        xWins(j, j + 6, j + 12, j + 18);
+                    }
+                    // Анализ победы, если o идет по диагонали (слева направо)
+                    else if ((buttons[j].getText().matches(g)) &&
+                            (buttons[j + 6].getText().matches(g)) &&
+                            (buttons[j + 12].getText().matches(g)) &&
+                            (buttons[j + 18].getText().matches(g))) {
+                        oWins(j, j + 6, j + 12, j + 18);
+                    }
+                }
+            }
+        }
     }
 
     // Метод, который вызывается в случае победы крестика

@@ -71,28 +71,22 @@ public class TicTacToe3x3 implements ActionListener {
                         buttons[i].setForeground(new Color(0, 36, 255));
                         buttons[i].setText("X");
                         player1_turn = false;
-                        textfield.setText("O:");
+                        textfield.setText("O");
                         check(); // вызов метода для проверки комбинации победы на текущем этапе
                     } else { // блок команд, который вызывается в случае, если игрок захотел нажать на заполненное поле
-                        for (int j = 0; j < 9; j++) {
-                            buttons[j].setEnabled(false);
-                        }
-                        textfield.setText("One more game!");
-                        break;
+                        frame.dispose();
+                        TicTacToe3x3 Window3x3 = new TicTacToe3x3();
                     }
                 } else { // если ходит нолик
                     if (buttons[i].getText() == "") {
                         buttons[i].setForeground(new Color(255, 0, 0));
                         buttons[i].setText("O");
                         player1_turn = true;
-                        textfield.setText("X:");
+                        textfield.setText("X");
                         check(); // вызов метода для проверки комбинации победы на текущем этапе
                     } else { // блок команд, который вызывается в случае, если игрок захотел нажать на заполненное поле
-                        for (int j = 0; j < 9; j++) {
-                            buttons[j].setEnabled(false);
-                        }
-                        textfield.setText("One more game!");
-                        break;
+                        frame.dispose();
+                        TicTacToe3x3 Window3x3 = new TicTacToe3x3();
                     }
                 }
             }
@@ -105,10 +99,10 @@ public class TicTacToe3x3 implements ActionListener {
 
         if (random.nextInt(2) == 0) { // первый ход выбирается случайно
             player1_turn = true;
-            textfield.setText("X:");
+            textfield.setText("X");
         } else {
             player1_turn = false;
-            textfield.setText("O:");
+            textfield.setText("O");
         }
 
     }
@@ -116,59 +110,65 @@ public class TicTacToe3x3 implements ActionListener {
     // Все варианты победы (3 подряд заполненных поля одним символом)
     public void check() {
 
-        // Анализ побед крестика
-        if ((buttons[0].getText() == "X") && (buttons[1].getText() == "X") && (buttons[2].getText() == "X")) {
-            xWins(0, 1, 2);
+        var f = "X";
+        var g = "O";
+        try {
+            for (int i = 0; i < 9; i += 3) {
+                // Победа по горизонтали (х)
+                if ((buttons[i].getText().matches(f)) &&
+                        (buttons[i + 1].getText().matches(f)) &&
+                        (buttons[i + 2].getText().matches(f))) {
+                    xWins(i, i + 1, i + 2);
+                }
+                // Победа по горизонтали (о)
+                if ((buttons[i].getText().matches(g)) &&
+                        (buttons[i + 1].getText().matches(g)) &&
+                        (buttons[i + 2].getText().matches(g))) {
+                    oWins(i, i + 1, i + 2);
+                }
+                for (int j = 0; j < 9; j ++) {
+                    // Победа по вертикали (x)
+                    if ((buttons[j].getText().matches(f)) &&
+                            (buttons[j + 3].getText().matches(f)) &&
+                            (buttons[j + 6].getText().matches(f))) {
+                        xWins(j, j + 3, j + 6);
+                    }
+                    // Победа по вертикали (o)
+                    else if ((buttons[j].getText().matches(g)) &&
+                            (buttons[j + 3].getText().matches(g)) &&
+                            (buttons[j + 6].getText().matches(g))) {
+                        oWins(j, j + 3, j + 6);
+                    }
+                }
+            }
         }
-        if ((buttons[3].getText() == "X") && (buttons[4].getText() == "X") && (buttons[5].getText() == "X")) {
-            xWins(3, 4, 5);
-        }
-        if ((buttons[6].getText() == "X") && (buttons[7].getText() == "X") && (buttons[8].getText() == "X")) {
-            xWins(6, 7, 8);
-        }
-        if ((buttons[0].getText() == "X") && (buttons[3].getText() == "X") && (buttons[6].getText() == "X")) {
-            xWins(0, 3, 6);
-        }
-        if ((buttons[1].getText() == "X") && (buttons[4].getText() == "X") && (buttons[7].getText() == "X")) {
-            xWins(1, 4, 7);
-        }
-        if ((buttons[2].getText() == "X") && (buttons[5].getText() == "X") && (buttons[8].getText() == "X")) {
-            xWins(2, 5, 8);
-        }
-        if ((buttons[0].getText() == "X") && (buttons[4].getText() == "X") && (buttons[8].getText() == "X")) {
-            xWins(0, 4, 8);
-        }
-        if ((buttons[2].getText() == "X") && (buttons[4].getText() == "X") && (buttons[6].getText() == "X")) {
-            xWins(2, 4, 6);
-        }
+        finally{
 
-        // Анализ побед нолика
-        if ((buttons[0].getText() == "O") && (buttons[1].getText() == "O") && (buttons[2].getText() == "O")) {
-            oWins(0, 1, 2);
+            // Победа по диагонали (х) (справа налево)
+            if ((buttons[2].getText().matches(f)) &&
+                    (buttons[4].getText().matches(f)) &&
+                    (buttons[6].getText().matches(f))) {
+                xWins(2, 4, 6);
+            }
+            // Победа по диагонали (о) (справа налево)
+            else if ((buttons[2].getText().matches(g)) &&
+                    (buttons[4].getText().matches(g)) &&
+                    (buttons[6].getText().matches(g))) {
+                oWins(2, 4, 6);
+            }
+            // Анализ победы, если х идет по диагонали (слева направо)
+            else if ((buttons[0].getText().matches(f)) &&
+                    (buttons[4].getText().matches(f)) &&
+                    (buttons[8].getText().matches(f))) {
+                xWins(0, 4, 8);
+            }
+            // Анализ победы, если o идет по диагонали (слева направо)
+            else if ((buttons[0].getText().matches(g)) &&
+                    (buttons[4].getText().matches(g)) &&
+                    (buttons[8].getText().matches(g))) {
+                oWins(0, 4, 8);
+            }
         }
-        if ((buttons[3].getText() == "O") && (buttons[4].getText() == "O") && (buttons[5].getText() == "O")) {
-            oWins(3, 4, 5);
-        }
-        if ((buttons[6].getText() == "O") && (buttons[7].getText() == "O") && (buttons[8].getText() == "O")) {
-            oWins(6, 7, 8);
-        }
-        if ((buttons[0].getText() == "O") && (buttons[3].getText() == "O") && (buttons[6].getText() == "O")) {
-            oWins(0, 3, 6);
-        }
-        if ((buttons[1].getText() == "O") && (buttons[4].getText() == "O") && (buttons[7].getText() == "O")) {
-            oWins(1, 4, 7);
-        }
-        if ((buttons[2].getText() == "O") && (buttons[5].getText() == "O") && (buttons[8].getText() == "O")) {
-            oWins(2, 5, 8);
-        }
-        if ((buttons[0].getText() == "O") && (buttons[4].getText() == "O") && (buttons[8].getText() == "O")) {
-            oWins(0, 4, 8);
-
-        }
-        if ((buttons[2].getText() == "O") && (buttons[4].getText() == "O") && (buttons[6].getText() == "O")) {
-            oWins(2, 4, 6);
-        }
-
     }
 
     // Метод, который вызывается в случае победы крестика

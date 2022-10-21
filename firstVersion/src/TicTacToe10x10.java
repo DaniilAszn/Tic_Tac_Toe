@@ -65,20 +65,20 @@ public class TicTacToe10x10 implements ActionListener {
 
         for(int i=0;i<100;i++) {
             if(e.getSource()==buttons[i]) {
-                if(player1_turn) { // Если ходит крестик
+                if(player1_turn) { // если ходит крестик
                     if(buttons[i].getText()=="") {
                         buttons[i].setForeground(new Color(0, 0, 255));
                         buttons[i].setText("X");
                         player1_turn=false;
                         textfield.setText("O");
-                        check(); // Вызов метода для проверки комбинации победы на текущем этапе
+                        check(); // вызов метода для проверки комбинации победы на текущем этапе
                     }
-                    else { // Блок команд, который вызывается в случае, если игрок захотел нажать на заполненное поле
+                    else { // блок команд, который вызывается в случае, если игрок захотел нажать на заполненное поле
                         frame.dispose();
                         TicTacToe10x10 Window10x10 = new TicTacToe10x10();
                     }
                 }
-                else { // Если ходит нолик
+                else { // если ходит нолик
                     if(buttons[i].getText()=="") {
                         buttons[i].setForeground(new Color(255, 0, 0));
                         buttons[i].setText("O");
@@ -86,7 +86,7 @@ public class TicTacToe10x10 implements ActionListener {
                         textfield.setText("X");
                         check(); // вызов метода для проверки комбинации победы на текущем этапе
                     }
-                    else { // Блок команд, который вызывается в случае, если игрок захотел нажать на заполненное поле
+                    else { // блок команд, который вызывается в случае, если игрок захотел нажать на заполненное поле
                         frame.dispose();
                         TicTacToe10x10 Window10x10 = new TicTacToe10x10();
                     }
@@ -114,99 +114,82 @@ public class TicTacToe10x10 implements ActionListener {
         var g = "O";
         // Анализ побед крестика
 
+        try {
+            for (int i = 0; i < 100; i += 10) {
+                for (int j = i; j < i + 6; j++) {
+                    // Анализ победы, если x идет по горизонтали
+                    if ((buttons[j].getText().matches(f)) &&
+                            (buttons[j + 1].getText().matches(f)) &&
+                            (buttons[j + 2].getText().matches(f)) &&
+                            (buttons[j + 3].getText().matches(f)) &&
+                            (buttons[j + 4].getText().matches(f))) {
+                        xWins(j, j + 1, j + 2, j + 3, j + 4);
+                    }
+                    // Анализ победы, если o идет по горизонтали
+                    else if ((buttons[j].getText().matches(g)) &&
+                            (buttons[j + 1].getText().matches(g)) &&
+                            (buttons[j + 2].getText().matches(g)) &&
+                            (buttons[j + 3].getText().matches(g)) &&
+                            (buttons[j + 4].getText().matches(g))) {
 
-        for(int i = 0; i < 100; i += 10){
-            for(int j = i; j < i+6; j++){
-                // Анализ победы, если x идет по горизонтали
-                if((buttons[j].getText().matches(f)) &&
-                        (buttons[j+1].getText().matches(f)) &&
-                        (buttons[j+2].getText().matches(f)) &&
-                        (buttons[j+3].getText().matches(f)) &&
-                        (buttons[j+4].getText().matches(f))) {
-                    xWins(j, j + 1, j + 2, j + 3, j + 4);
+                        oWins(j, j + 1, j + 2, j + 3, j + 4);
+                    }
                 }
-                // Анализ победы, если o идет по горизонтали
-                else if((buttons[j].getText().matches(g)) &&
-                        (buttons[j+1].getText().matches(g)) &&
-                        (buttons[j+2].getText().matches(g)) &&
-                        (buttons[j+3].getText().matches(g)) &&
-                        (buttons[j+4].getText().matches(g))){
-
-                    oWins(j, j+1, j+2, j+3, j+4);
+                // Анализ победы, если х идет по диагонали (справа налево)
+                for (int j = i + 4; j < i + 10; j++) {
+                    if ((buttons[j].getText().matches(f)) &&
+                            (buttons[j + 9].getText().matches(f)) &&
+                            (buttons[j + 18].getText().matches(f)) &&
+                            (buttons[j + 27].getText().matches(f)) &&
+                            (buttons[j + 36].getText().matches(f))) {
+                        xWins(j, j + 9, j + 18, j + 27, j + 36);
+                    }
+                    // Анализ победы, если o идет по диагонали (справа налево)
+                    else if ((buttons[j].getText().matches(g)) &&
+                            (buttons[j + 9].getText().matches(g)) &&
+                            (buttons[j + 18].getText().matches(g)) &&
+                            (buttons[j + 27].getText().matches(g)) &&
+                            (buttons[j + 36].getText().matches(g))) {
+                        oWins(j, j + 9, j + 18, j + 27, j + 36);
+                    }
                 }
             }
         }
-
-        for(int i = 0; i < 100; i += 10){
-            for(int j = i; j < i+6; j++){
-                if((buttons[j].getText().matches(f)) &&
-                        (buttons[j+1].getText().matches(f)) &&
-                        (buttons[j+2].getText().matches(f)) &&
-                        (buttons[j+3].getText().matches(f)) &&
-                        (buttons[j+4].getText().matches(f))) {
-                    xWins(j, j + 1, j + 2, j + 3, j + 4);
+        finally{
+            // Анализ победы, если х идет по вертикали
+            for(int i = 0; i < 70; i++){
+                if((buttons[i].getText().matches(f)) &&
+                        (buttons[i+10].getText().matches(f)) &&
+                        (buttons[i+20].getText().matches(f)) &&
+                        (buttons[i+30].getText().matches(f)) &&
+                        (buttons[i+40].getText().matches(f))) {
+                    xWins(i, i + 10, i + 20, i + 30, i + 40);
                 }
-                else if((buttons[j].getText().matches(g)) &&
-                        (buttons[j+1].getText().matches(g)) &&
-                        (buttons[j+2].getText().matches(g)) &&
-                        (buttons[j+3].getText().matches(g)) &&
-                        (buttons[j+4].getText().matches(g))) {
-                    oWins(j, j + 1, j + 2, j + 3, j + 4);
+                // Анализ победы, если o идет по вертикали
+                else if((buttons[i].getText().matches(g)) &&
+                        (buttons[i+10].getText().matches(g)) &&
+                        (buttons[i+20].getText().matches(g)) &&
+                        (buttons[i+30].getText().matches(g)) &&
+                        (buttons[i+40].getText().matches(g))) {
+                    oWins(i, i + 10, i + 20, i + 30, i + 40);
                 }
-            }
-
-            // Анализ победы, если х идет по диагонали (справа налево)
-            for(int j = i+4; j < i+10; j++){
-
-                if((buttons[j].getText().matches(f)) &&
-                        (buttons[j+9].getText().matches(f)) &&
-                        (buttons[j+18].getText().matches(f)) &&
-                        (buttons[j+27].getText().matches(f)) &&
-                        (buttons[j+36].getText().matches(f))) {
-                    xWins(j, j + 9, j + 18, j + 27, j + 36);
-                }
-                else if((buttons[j].getText().matches(g)) &&
-                        (buttons[j+9].getText().matches(g)) &&
-                        (buttons[j+18].getText().matches(g)) &&
-                        (buttons[j+27].getText().matches(g)) &&
-                        (buttons[j+36].getText().matches(g))) {
-                    oWins(j, j + 9, j + 18, j + 27, j + 36);
-                }
-            }
-        }
-
-        // Анализ победы, если х идет по вертикали
-        for(int i = 0; i < 70; i++){
-            for(int j = i; j < i+6; j++){
-
-                if((buttons[j].getText().matches(f)) &&
-                        (buttons[j+10].getText().matches(f)) &&
-                        (buttons[j+20].getText().matches(f)) &&
-                        (buttons[j+30].getText().matches(f)) &&
-                        (buttons[j+40].getText().matches(f))) {
-                    xWins(j, j + 10, j + 20, j + 30, j + 40);
-                }
-                else if((buttons[j].getText().matches(g)) &&
-                        (buttons[j+10].getText().matches(g)) &&
-                        (buttons[j+20].getText().matches(g)) &&
-                        (buttons[j+30].getText().matches(g)) &&
-                        (buttons[j+40].getText().matches(g))) {
-                    oWins(j, j + 10, j + 20, j + 30, j + 40);
-                }
-                // Анализ победы, если х идет по диагонали (слева направо)
-                else if((buttons[j].getText().matches(f)) &&
-                        (buttons[j+11].getText().matches(f)) &&
-                        (buttons[j+22].getText().matches(f)) &&
-                        (buttons[j+33].getText().matches(f)) &&
-                        (buttons[j+44].getText().matches(f))) {
-                    xWins(j, j + 11, j + 22, j + 33, j + 44);
-                }
-                else if((buttons[j].getText().matches(g)) &&
-                        (buttons[j+11].getText().matches(g)) &&
-                        (buttons[j+22].getText().matches(g)) &&
-                        (buttons[j+33].getText().matches(g)) &&
-                        (buttons[j+44].getText().matches(g))) {
-                    oWins(j, j + 11, j + 22, j + 33, j + 44);
+                for(int j = i; j < i+6; j++){
+                    // Анализ победы, если х идет по диагонали (слева направо)
+                    if((buttons[j].getText().matches(f)) &&
+                            (buttons[j+11].getText().matches(f)) &&
+                            (buttons[j+22].getText().matches(f)) &&
+                            (buttons[j+33].getText().matches(f)) &&
+                            (buttons[j+44].getText().matches(f))) {
+                        xWins(j, j + 11, j + 22, j + 33, j + 44);
+                    }
+                    // Анализ победы, если o идет по диагонали (слева направо)
+                    else if((buttons[j].getText().matches(g)) &&
+                            (buttons[j+11].getText().matches(g)) &&
+                            (buttons[j+22].getText().matches(g)) &&
+                            (buttons[j+33].getText().matches(g)) &&
+                            (buttons[j+44].getText().matches(g))) {
+                        oWins(j, j + 11, j + 22, j + 33, j + 44);
+                    }
                 }
             }
         }
