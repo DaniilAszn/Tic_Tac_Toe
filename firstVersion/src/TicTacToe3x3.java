@@ -1,9 +1,8 @@
 // Подключаем необходимые библиотеки для работы с графическим интерфейсом
-
 import java.awt.*;
 import java.awt.event.*;
-import java.util.*;
 import javax.swing.*;
+import java.util.*;
 
 public class TicTacToe3x3 implements ActionListener {
 
@@ -45,7 +44,7 @@ public class TicTacToe3x3 implements ActionListener {
         for (int i = 0; i < 9; i++) {
             buttons[i] = new JButton();
             button_panel.add(buttons[i]);
-            buttons[i].setFont(new Font("", Font.BOLD, 120));
+            buttons[i].setFont(new Font("Ink free", Font.BOLD, 120));
             buttons[i].setFocusable(false);
             buttons[i].addActionListener(this);
             buttons[i].setBackground(new Color(255, 255, 255));
@@ -169,6 +168,7 @@ public class TicTacToe3x3 implements ActionListener {
                 oWins(0, 4, 8);
             }
         }
+
     }
 
     // Метод, который вызывается в случае победы крестика
@@ -202,4 +202,5 @@ public class TicTacToe3x3 implements ActionListener {
         textfield.setText("O wins");
 
     }
+
 }

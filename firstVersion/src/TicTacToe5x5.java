@@ -44,7 +44,7 @@ public class TicTacToe5x5 implements ActionListener {
         for(int i=0;i<25;i++) {
             buttons[i] = new JButton();
             button_panel.add(buttons[i]);
-            buttons[i].setFont(new Font("",Font.BOLD,100));
+            buttons[i].setFont(new Font("Ink free",Font.BOLD,100));
             buttons[i].setFocusable(false);
             buttons[i].addActionListener(this);
             buttons[i].setBackground(new Color(255, 255, 255));
@@ -188,6 +188,7 @@ public class TicTacToe5x5 implements ActionListener {
                 }
             }
         }
+
     }
 
     // Метод, который вызывается в случае победы крестика
@@ -223,4 +224,5 @@ public class TicTacToe5x5 implements ActionListener {
         textfield.setText("O wins");
 
     }
+
 }
